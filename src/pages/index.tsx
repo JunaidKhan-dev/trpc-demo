@@ -1,17 +1,12 @@
 import { Inter } from "next/font/google"
 import Head from "next/head"
 
-import { trpc } from "@/utils/trpc"
+import AddToDo from "@/components/AddToDo"
+import Todos from "@/components/Todos"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
-  const hello = trpc.todo.hello.useQuery({ text: "client" })
-
-  if (!hello.data) {
-    return <div>Loading...</div>
-  }
-
   return (
     <>
       <Head>
@@ -22,7 +17,11 @@ export default function Home() {
       </Head>
       <main>
         <h1>TRPC Basics</h1>
-        <p>{hello.data.greeting}</p>
+        <AddToDo />
+        <br />
+        <hr />
+        <hr />
+        <Todos />
       </main>
     </>
   )
